@@ -6,6 +6,8 @@ in the same way.  First and second are the parameters for every operation */
 var input = '';
 //  This variable will ensure that a decimal can only be entered once.
 var canClick = true;
+//  This variable will hold a string with the URL path to be sent into the GET request.  It will be assigned when the operator is clicked.
+var type = '';
 //  This object will be sent to the server, with the properties being run through the calculation.
 var endNums = {
   firstNum: 4,
@@ -26,7 +28,16 @@ $(document).ready(function() {
   $('#divide').click(function(){
     divideNums();
   });
-
+  $('#clear').click(function(){
+    //  Clear function
+  });
+  $('#decimal').click(function(){
+    //  Add decimal to active
+    canClick = false;
+  });
+  $('#calculate').click(function() {
+    getNum(type);
+  });
 
 });
 
@@ -44,6 +55,21 @@ function postNums(numOne, numTwo) {
   });
 }
 
+function addNums() {
+  type = '/add';
+}
+
+function subtractNums() {
+  type = '/subtract';
+}
+
+function multiplyNums() {
+  type = '/multiply';
+}
+
+function divideNums() {
+  type = '/divide';
+}
 //  GET function for retreiving the answer.  The toURL parameter will direct the request to the proper router.
 function getNum(toURL) {
   $.ajax({
@@ -54,9 +80,3 @@ function getNum(toURL) {
     }
   });
 }
-/*
-0=
-123
-456
-789
-*/

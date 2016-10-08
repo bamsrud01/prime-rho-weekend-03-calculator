@@ -4,20 +4,36 @@
   height: 500px;
 }
 
-.test {
-  border: 1px solid green;
-  height: 100%;
-}
-
 #display-area {
   height: 140px;
 }
 
 .button-col {
   height: 75px;;
-  border: 2px dashed red;
 }
 
 .buffer {
   height: 15px;
+}
+
+.btn-lg {
+  width: 70px;
+  margin-top: 15px;
+}
+
+#display-field {
+  border: solid 1px purple;
+  margin-top: 35px;
+  height: 70px;
+}
+
+#shown-value {
+  font-size: 50px;
+  padding-right: 20px;
+  float: right;
+}
+
+#clear {
+  float: left;
+  margin: 10px;
 }
