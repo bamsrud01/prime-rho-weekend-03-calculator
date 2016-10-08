@@ -2,7 +2,11 @@
 assigned to the variable first, converted to a float.  Active is reset to be empty.  Active is then assigned to second
 in the same way.  First and second are the parameters for every operation */
 
+//  This variable holds the value of the number while it is being entered.
 var input = '';
+//  This variable will ensure that a decimal can only be entered once.
+var canClick = true;
+//  This object will be sent to the server, with the properties being run through the calculation.
 var endNums = {
   firstNum: 4,
   secondNum: 2
@@ -26,58 +30,21 @@ $(document).ready(function() {
 
 });
 
-//  POST function for adding numbers
-function addNums(numOne, numTwo) {
+//  toURL values:   '/add'  '/subtract' '/multiply'   '/divide'
+
+//  POST function for calculating numbers.  The toURL parameter will direct the request to the proper router.
+function postNums(numOne, numTwo) {
   $.ajax({
     type: 'POST',
-    url: '/add',
+    url: toURL,
     data: endNums,
     success: function() {
-      //  Do something;
       getNum('/add');
     }
   });
 }
 
-//  POST function for subtracting numbers
-function subtractNums(numOne, numTwo) {
-  $.ajax({
-    type: 'POST',
-    url: '/subtract',
-    data: endNums,
-    success: function() {
-      //  Do something;
-      getNum('/subtract');
-    }
-  });
-}
-
-//  POST function for multiplying numbers
-function multiplyNums(numOne, numTwo) {
-  $.ajax({
-    type: 'POST',
-    url: '/multiply',
-    data: endNums,
-    success: function() {
-      //  Do something;
-      getNum('/multiply');
-    }
-  });
-}
-
-//  POST function for dividing numbers
-function divideNums(numOne, numTwo) {
-  $.ajax({
-    type: 'POST',
-    url: '/divide',
-    data: endNums,
-    success: function() {
-      //  Do something;
-      getNum('/divide');
-    }
-  });
-}
-
+//  GET function for retreiving the answer.  The toURL parameter will direct the request to the proper router.
 function getNum(toURL) {
   $.ajax({
     type: 'GET',
@@ -87,3 +54,9 @@ function getNum(toURL) {
     }
   });
 }
+/*
+0=
+123
+456
+789
+*/
