@@ -4,7 +4,7 @@ var input, canClick, canOperate, type, active;
 
 $(document).ready(function() {
 
-  //  Set starting values and initialize display
+  //  Set starting values (in clearAll function) and initialize display
   clearAll();
   updateDisplay();
 
@@ -19,7 +19,7 @@ $(document).ready(function() {
       input = '';
     }
     input += $(this).text();
-    $('#shown-value').text(input);
+    updateDisplay();
   });
 
   //  Click handler for operators
@@ -59,6 +59,7 @@ $(document).ready(function() {
 
 });
 
+//  This function will use the text in the operator button to assign the appropriate url for the POST and GET functions.
 function assignOperator(value) {
   if (canOperate) {
     switch (value) {
@@ -82,9 +83,10 @@ function assignOperator(value) {
   }
 }
 
+//  This function will split the input at the spaces, returning an array with three items.  The first and third are the two numbers.
 function assignValues(){
   var array = input.split(' ');
-
+  //  If the array is less than 3 in length, no operation or second number has been chosen.  The operation will fail, so the user is warned and the calculator is reset.
   if (array.length < 3) {
     alert('Please enter two numbers.  Try again.');
     clearAll();
@@ -112,6 +114,8 @@ function clearAll() {
   active = true;
   updateDisplay();
 }
+
+//  Continuously updates the display to match the input string.
 function updateDisplay() {
   $('#shown-value').text(input);
 }
@@ -135,7 +139,7 @@ function getNum(toURL) {
     url: toURL,
     success: function(num){
       input = num;
-      updateDisplay();;
+      updateDisplay();
     }
   });
 }
