@@ -28,7 +28,6 @@ $(document).ready(function() {
     canOperate = false;
     canClick = true;
     updateDisplay();
-    console.log(type);
   });
 
   //  Click handler for the clear button
